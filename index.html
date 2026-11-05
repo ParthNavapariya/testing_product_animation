@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HK Enterprise® — Architectural & Industrial Hardware Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body class="showcase-page">
+
+  <!-- Header / Navigation Bar (Matches NIMKRO style from video) -->
+  <header class="showcase-header">
+    <div class="header-container">
+      <div class="header-brand">
+        <h1 class="brand-title">HK ENTERPRISE<span>®</span></h1>
+        <span class="brand-tagline">Next Level Step...</span>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-sound-toggle" class="header-btn sound-btn muted" title="Toggle Sound">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          <span class="sound-label">Sound: OFF</span>
+        </button>
+
+        <button id="btn-compare-photo" class="header-btn photo-btn">
+          <span>📷 Reference Photo</span>
+        </button>
+
+        <button class="menu-burger-btn" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Showcase Title Banner (Matches video category banner) -->
+  <section class="showcase-banner">
+    <div class="banner-pill">
+      <span class="banner-dot"></span>
+      <span class="banner-text">ARCHITECTURAL & INDUSTRIAL HARDWARE SHOWCASE</span>
+      <span class="banner-dot"></span>
+    </div>
+    <h2 class="banner-heading">Engineered Precision In Motion</h2>
+    <p class="banner-sub">Explore our signature collection of heavy-duty industrial brackets, exploded knurled fittings, and architectural luxury handles rendered with real-time 3D physics and cinematic animations.</p>
+
+    <!-- Category Filter Pills -->
+    <div class="filter-pills-row">
+      <button class="filter-pill active" data-filter="all">All Products (6)</button>
+      <button class="filter-pill" data-filter="brackets">Metal L-Brackets</button>
+      <button class="filter-pill" data-filter="knobs">Door Knobs</button>
+      <button class="filter-pill" data-filter="handles">Pull Handles</button>
+      <button class="filter-pill" data-filter="edge-pulls">Edge Profiles</button>
+    </div>
+  </section>
+
+  <!-- Master Products Showcase Feed / Grid -->
+  <main class="showcase-feed-container">
+    <div class="products-feed-grid" id="products-grid">
+      <!-- Populated dynamically by showcaseApp.js with interactive 3D WebGL cards -->
+    </div>
+  </section>
+
+  <!-- News & Architectural Updates Section (From Reference Video) -->
+  <section class="news-section">
+    <div class="news-container">
+      <h2 class="news-title">News.</h2>
+      <p class="news-desc">We always update the latest news about our company as well as architecture and hardware engineering news around the world. Subscribe to follow our latest CAD developments and innovations.</p>
+      
+      <form class="news-subscribe-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to HK Enterprise Architectural News!');">
+        <input type="email" placeholder="Enter your business email..." required>
+        <button type="submit" class="btn-subscribe">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer (From Reference Video) -->
+  <footer class="showcase-footer">
+    <div class="footer-container">
+      <div class="footer-col brand">
+        <h3 class="footer-brand">HK ENTERPRISE<span>®</span></h3>
+        <p>Premium Architectural Hardware & Heavy-Duty Cold-Formed Fasteners. Precision-machined to ISO 9001 and DIN engineering standards.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Complete Hardware Fittings</h4>
+        <ul>
+          <li><a href="#products-grid">Precision Metal L-Brackets</a></li>
+          <li><a href="#products-grid">Knurled Brass Glass Knobs</a></li>
+          <li><a href="#products-grid">Architectural Entry Pulls</a></li>
+          <li><a href="#products-grid">Fluted Edge Extrusions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Engineering Support</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="alert('CAD Drawings (.STEP, .DWG, .IGES) available upon request.')">Download CAD Models</a></li>
+          <li><a href="javascript:void(0)" onclick="alert('All HK Enterprise products comply with ASTM B117 salt spray standards.')">Material Certifications</a></li>
+          <li><a href="javascript:void(0)" onclick="alert('Wholesale commercial inquiries: sales@hkenterprise.com')">Wholesale Distribution</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HK Enterprise. All rights reserved. Crafted with authentic 3D WebGL animations.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Scroll-To-Top Button (Matches video floating button) -->
+  <button id="btn-scroll-top" class="scroll-top-btn" title="Back to top">
+    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" fill="none" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- Reference Image Comparison Modal -->
+  <div id="compare-modal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-tag">DESIGN VERIFICATION</span>
+          <h3>Uploaded Specimen vs. 3D Digital Twin</h3>
+        </div>
+        <button id="btn-close-modal" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="comparison-grid">
+          <div class="compare-col">
+            <div class="compare-badge photo">Original Uploaded Photo</div>
+            <div class="compare-img-wrap">
+              <img src="/assets/reference-bracket.jpg" alt="Uploaded Reference Metal L-Bracket">
+            </div>
+            <div class="compare-caption">
+              <strong>Uploaded HK Enterprise Metal L-Bracket</strong>
+              <p>Real-world reference image showing 90-degree bend, quad vertical holes, galvanization, and hex bolt with dark washer on tabletop.</p>
+            </div>
+          </div>
+
+          <div class="compare-col features">
+            <div class="compare-badge model">Verified 3D Features</div>
+            <ul class="feature-match-list">
+              <li>
+                <span class="match-icon">✓</span>
+                <div>
+                  <strong>Preserved Original Shape & Dimensions</strong>
+                  <p>Accurate 48mm × 44mm × 44mm proportions with 3.2mm plate gauge.</p>
+                </div>
+              </li>
+              <li>
+                <span class="match-icon">✓</span>
+                <div>
+                  <strong>Four Mounting Holes (2x2 Grid)</strong>
+                  <p>2 upper ports and 2 lower ports positioned precisely above the bend line with countersunk chamfer bevels.</p>
+                </div>
+              </li>
+              <li>
+                <span class="match-icon">✓</span>
+                <div>
+                  <strong>True 90-Degree Cold-Formed Bend</strong>
+                  <p>Smooth inner radius and curved outer bend with authentic sheet metal crease.</p>
+                </div>
+              </li>
+              <li>
+                <span class="match-icon">✓</span>
+                <div>
+                  <strong>Zinc Galvanized Crystalline Texture</strong>
+                  <p>PBR metallic procedural spangles with micro-brushed anisotropic grain.</p>
+                </div>
+              </li>
+              <li>
+                <span class="match-icon">✓</span>
+                <div>
+                  <strong>Hex Bolt Fastener & Dark Retention Washer</strong>
+                  <p>Grade 8.8 hex bolt head with top chamfer, torque markings, and washer seated in central horizontal slot.</p>
+                </div>
+              </li>
+              <li>
+                <span class="match-icon">✓</span>
+                <div>
+                  <strong>Exploded View Animation</strong>
+                  <p>Bolt, washer, and nut detach and reassemble smoothly in real 3D space.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-Screen 3D Inspector Modal -->
+  <div id="inspect-modal" class="modal-backdrop">
+    <div class="modal-dialog inspect-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-tag">3D DIGITAL TWIN INSPECTION</span>
+          <h3 id="inspect-product-title">Product Name</h3>
+        </div>
+        <button id="btn-close-inspect" class="modal-close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body inspect-body">
+        <div class="inspect-canvas-container" id="inspect-canvas-wrap"></div>
+        <div class="inspect-info-panel">
+          <p id="inspect-product-desc"></p>
+          <div class="inspect-hint">
+            <span>💡 Click and drag to orbit 360° • Scroll / Pinch to zoom</span>
+          </div>
+          <button class="btn-inspect-quote" onclick="alert('CAD data pack sent for download.')">
+            Download 3D CAD (.STEP / .GLTF)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/showcaseApp.js"></script>
+</body>
+</html>
